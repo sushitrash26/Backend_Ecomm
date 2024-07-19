@@ -68,7 +68,7 @@ const fetchLatestCart = asyncHandler(async(req,res)=>{
     const cart = await Cart.find({userId}).sort({createdAt:-1}).limit(1).populate("items.productId")
     console.log(cart)
     if(!cart){
-        throw new ApiError(404,"Cart not found")
+        return res.status(200).json(new ApiResponse(200,{},"No Carts Found"))
     }
 
     
